@@ -13,7 +13,7 @@
 
 ### Installation
 ```bash
-npm install react-native-material-switch
+npm install react-native-material-switch-extended
 ```
 
 ### Usage example
@@ -55,7 +55,7 @@ var Application = React.createClass({
 
 ### Live example
 ```sh
-git clone git@github.com:Recr0ns/react-native-material-switch.git
+git clone git@github.com:codekoalas/react-native-material-switch.git
 cd react-native-material-switch/examples
 npm install
 open ios/switchExample.xcodeproj
@@ -66,4 +66,4 @@ Then `Cmd+R` to start the React Packager, build and run the project in the simul
 MIT License
 
 ### Questions?
-Feel free to [create an issue](https://github.com/Recr0ns/react-native-material-switch/issues)
+Feel free to [create an issue](https://github.com/codekoalas/react-native-material-switch/issues)
