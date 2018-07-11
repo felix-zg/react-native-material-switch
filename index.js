@@ -1,23 +1,22 @@
-var React = require('react');
-var ReactNative = require('react-native');
-
-var {
+import React from 'react'
+import {
   PanResponder,
   View,
   TouchableHighlight,
   Animated,
-} = ReactNative;
+  ViewPropTypes
+} from 'react-native';
 import PropTypes from 'prop-types'
 
 class MaterialSwitch extends React.Component {
   static propTypes = {
     active: PropTypes.bool,
-    style: View.propTypes.style,
+    style: ViewPropTypes.style,
     inactiveButtonColor: PropTypes.string,
     inactiveButtonPressedColor: PropTypes.string,
     activeButtonColor: PropTypes.string,
     activeButtonPressedColor: PropTypes.string,
-    buttonShadow: View.propTypes.style,
+    buttonShadow: ViewPropTypes.style,
     activeBackgroundColor: PropTypes.string,
     inactiveBackgroundColor: PropTypes.string,
     buttonRadius: PropTypes.number,
