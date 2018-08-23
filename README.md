@@ -13,7 +13,7 @@
 
 ### Installation
 ```bash
-npm install react-native-material-switch-extended
+npm install imchintan/react-native-material-switch
 ```
 
 ### Usage example
@@ -34,6 +34,10 @@ var Application = React.createClass({
 ### Properties
 * `active` (Boolean) - Initial switch state (default: false),
 * `style` (Object) - Styles for outer container (margins, ...),
+* `activeText` (String) - Active label  (default: ''),
+* `inactiveText` (String) -Inactive label (default: ''),
+* `activeTextStyle` (Object) - Styles for active text,
+* `inactiveTextStyle` (Object) - Styles for inactive text,
 * `inactiveButtonColor` (String) - Button color  (default: '#2196F3'),
 * `inactiveButtonPressedColor` (String) (default: '#42A5F5'),
 * `activeButtonColor` (String) (default: '#FAFAFA'),
@@ -55,7 +59,7 @@ var Application = React.createClass({
 
 ### Live example
 ```sh
-git clone git@github.com:codekoalas/react-native-material-switch.git
+git clone git@github.com:imchintan/react-native-material-switch.git
 cd react-native-material-switch/examples
 npm install
 open ios/switchExample.xcodeproj

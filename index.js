@@ -2,7 +2,8 @@ import React from 'react'
 import {
   PanResponder,
   View,
-  TouchableHighlight,
+  Text,
+  TouchableOpacity,
   Animated,
   ViewPropTypes
 } from 'react-native';
@@ -11,8 +12,10 @@ import PropTypes from 'prop-types'
 class MaterialSwitch extends React.Component {
   static propTypes = {
     active: PropTypes.bool,
-    style: ViewPropTypes.style,
-    inactiveButtonColor: PropTypes.string,
+    activeText: PropTypes.string,
+    inactiveText: PropTypes.string,
+    activeTextStyle: ViewPropTypes.style,
+    inactiveTextStyle: ViewPropTypes.style,
     inactiveButtonPressedColor: PropTypes.string,
     activeButtonColor: PropTypes.string,
     activeButtonPressedColor: PropTypes.string,
@@ -32,23 +35,26 @@ class MaterialSwitch extends React.Component {
 
   static defaultProps = {
     active: false,
-    style: {},
-    inactiveButtonColor: '#2196F3',
+    activeText: '',
+    inactiveText: '',
+    activeTextStyle: {},
+    inactiveTextStyle: {},
     inactiveButtonPressedColor: '#42A5F5',
-    activeButtonColor: '#FAFAFA',
+    activeButtonColor: '#F5F5F5',
     activeButtonPressedColor: '#F5F5F5',
+    inactiveButtonColor: '#FEFEFE',
     buttonShadow: {
       elevation: 3,
-      shadowColor: '#000',
+      shadowColor: '#CFCFCF',
       shadowOpacity: 0.5,
       shadowRadius: 1,
       shadowOffset: { height: 1, width: 0 },
     },
-    activeBackgroundColor: 'rgba(255,255,255,.5)',
-    inactiveBackgroundColor: 'rgba(0,0,0,.5)',
-    buttonRadius: 15,
-    switchWidth: 40,
-    switchHeight: 20,
+    activeBackgroundColor: '#42A5F5',
+    inactiveBackgroundColor: '#CFCFCF',
+    buttonRadius: 13,
+    switchWidth: 50,
+    switchHeight: 30,
     buttonContent: null,
     enableSlide: true,
     switchAnimationTime: 200,
@@ -59,8 +65,7 @@ class MaterialSwitch extends React.Component {
 
   constructor(props) {
     super(props);
-    var w = props.switchWidth - Math.min(props.switchHeight, props.buttonRadius*2);
-
+    var w =  props.switchWidth - Math.round(props.buttonRadius*2)-2//props.switchWidth - Math.min(props.switchHeight, props.buttonRadius*2);
     this.state = {
       width: w,
       state: props.active,
@@ -219,7 +224,7 @@ class MaterialSwitch extends React.Component {
   };
 
   render() {
-    var doublePadding = this.padding*2-2;
+    var doublePadding = this.padding*2;
     var halfPadding = doublePadding/2;
     return (
       <View
@@ -228,17 +233,26 @@ class MaterialSwitch extends React.Component {
         <View
           style={{
             backgroundColor: this.state.state ? this.props.activeBackgroundColor : this.props.inactiveBackgroundColor,
-            height: this.props.switchHeight,
-            width: this.props.switchWidth,
-            borderRadius: this.props.switchHeight/2,
+            height: this.props.switchHeight+2,
+            width: this.props.switchWidth+2,
+            borderRadius: (this.props.switchHeight+2)/2,
+            padding: 2,
           }}/>
-        <TouchableHighlight underlayColor='transparent' activeOpacity={1} style={{
+        <TouchableOpacity underlayColor='transparent' activeOpacity={1} style={{
             height: Math.max(this.props.buttonRadius*2+doublePadding, this.props.switchHeight+doublePadding),
             width: this.props.switchWidth+doublePadding,
             position: 'absolute',
-            top: 1,
-            left: 1
+            top:1,
+            left:2,
           }}>
+          <Text style={[{
+              color: this.state.state?'#FFFFFF':'#333333',
+              textAlign: this.state.state?'left':'right',
+              paddingVertical: doublePadding - 3,
+              paddingHorizontal: doublePadding
+          }, this.state.state? this.props.activeTextStyle:this.props.inactiveTextStyle]}>
+            {this.state.state?this.props.activeText:this.props.inactiveText}
+          </Text>
           <Animated.View style={[{
               backgroundColor:
                 this.state.state
@@ -259,7 +273,7 @@ class MaterialSwitch extends React.Component {
           >
             {this.props.buttonContent}
           </Animated.View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     )
   }
